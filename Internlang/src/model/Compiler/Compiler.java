@@ -5,6 +5,7 @@
 package model.Compiler;
 
 import model.CodeGenerator.CodeGenerator;
+import model.CodeGenerator.CodeGeneratorFactory;
 import model.CodeGenerator.CsharpCodeGenerator;
 import model.CodeGenerator.JavaCodeGenerator;
 import model.CodeGenerator.PythonCodeGenerator;
@@ -32,21 +33,7 @@ public class Compiler {
         this.parser.parse(this.lexer.scan());
         this.semanticAnalyzer.verifyParseTree();
         
-        switch (targetCode) {
-            case PYTHON:
-                this.codeGenerator = new PythonCodeGenerator();
-                break;
-            case JAVA:
-                this.codeGenerator = new JavaCodeGenerator();
-                break;
-            case CSHARP:
-                this.codeGenerator = new CsharpCodeGenerator();
-                break;
-            case TYPESCRIPT:
-                this.codeGenerator = new TypescriptCodeGenerator();
-            default:
-                break;
-        }
+        this.codeGenerator = CodeGeneratorFactory.createCodeGenerator(targetCode);
         
         return this.codeGenerator.generate(parseTree, symbolTable);
     }
