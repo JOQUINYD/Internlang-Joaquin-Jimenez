@@ -4,11 +4,13 @@
  */
 package model.CodeGenerator;
 
+import model.Compiler.ParseTree;
+import model.Compiler.SymbolTable;
+
 /**
  *
  * @author joaqu
  */
 public interface CodeGenerator {
-    public void generate();
-    public String getCode();
+    public String generate(ParseTree parseTree, SymbolTable symbolTable);
 }
