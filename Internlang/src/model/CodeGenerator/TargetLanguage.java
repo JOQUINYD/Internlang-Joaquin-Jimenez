@@ -8,7 +8,7 @@ package model.CodeGenerator;
  *
  * @author joaqu
  */
-public enum TargetCode {
+public enum TargetLanguage {
     PYTHON,
     JAVA,
     CSHARP,
