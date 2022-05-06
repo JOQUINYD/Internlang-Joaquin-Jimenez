@@ -9,7 +9,7 @@ import model.CodeGenerator.CodeGeneratorFactory;
 import model.CodeGenerator.CsharpCodeGenerator;
 import model.CodeGenerator.JavaCodeGenerator;
 import model.CodeGenerator.PythonCodeGenerator;
-import model.CodeGenerator.TargetCode;
+import model.CodeGenerator.TargetLanguage;
 import model.CodeGenerator.TypescriptCodeGenerator;
 
 /**
@@ -22,7 +22,7 @@ public class Compiler {
     private SemanticAnalyzer semanticAnalyzer;
     private CodeGenerator codeGenerator;
     
-    public String compile(String code, TargetCode targetCode){
+    public String compile(String code, TargetLanguage targetLanguage){
         SymbolTable symbolTable = new SymbolTable();
         ParseTree parseTree = new ParseTree();
         
@@ -33,7 +33,7 @@ public class Compiler {
         this.parser.parse(this.lexer.scan());
         this.semanticAnalyzer.verifyParseTree();
         
-        this.codeGenerator = CodeGeneratorFactory.createCodeGenerator(targetCode);
+        this.codeGenerator = CodeGeneratorFactory.createCodeGenerator(targetLanguage);
         
         return this.codeGenerator.generate(parseTree, symbolTable);
     }

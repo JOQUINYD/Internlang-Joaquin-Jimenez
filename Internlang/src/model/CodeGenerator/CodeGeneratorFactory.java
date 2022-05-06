@@ -9,8 +9,8 @@ package model.CodeGenerator;
  * @author joaqu
  */
 public class CodeGeneratorFactory {
-    public static CodeGenerator createCodeGenerator(TargetCode targetCode){
-        return switch (targetCode) {
+    public static CodeGenerator createCodeGenerator(TargetLanguage targetLanguage){
+        return switch (targetLanguage) {
             case PYTHON -> new PythonCodeGenerator();
             case JAVA -> new JavaCodeGenerator();
             case CSHARP -> new CsharpCodeGenerator();
